@@ -10,7 +10,7 @@ namespace Back_End.Models
         public string ZipCode { get; set; }
         public string Country { get; set; }
 
-        public string IdUser { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
     }
 }
