@@ -1,10 +1,6 @@
-footer
+.default-footer
 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  order: 2;
-  width: 100%;
-  height: 120px;
+  width: var(--layout-size-width);
+  height: var(--layout-size-heigth);
   background-color: var(--main-color);
 }
