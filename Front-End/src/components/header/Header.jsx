@@ -1,12 +1,10 @@
 import "./header.css"
+import SearchBar from "@components/searchBar/SearchBar.jsx"
 export default function Header()
 {
   return (
   <header>
-      <nav className="nav-bar">
-        <input type="text" />
-        <button type="button"></button>
-      </nav>
+  <SearchBar />
   </header>
   )
 }
