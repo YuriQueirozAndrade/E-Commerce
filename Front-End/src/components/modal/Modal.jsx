@@ -1,9 +1,9 @@
 import "./modal.css"
-export default function Modal()
+export default function Modal({children, mWidth,mHeight,mBorder})
 {
   return (
-  <a className="modal" href="/product">
-    <img src="#" alt="" />
-  </a>
+  <div className="modal" style={{width: mWidth, height: mHeight, borderRadius: mBorder,}}>
+    {children}
+  </div>
   )
 }
