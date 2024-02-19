@@ -1,19 +1,14 @@
-import Header from "@components/header/Header.jsx";
-import Footer from "@components/footer/Footer.jsx";
+import Layout from "@pages/layouts/MainLayout.jsx";
+import Card from "@components/productCard/ProductCard.jsx";
 import Modal from "@components/modal/Modal.jsx";
-import "./home.css";
+import "@pages/home/home.css";
 export default function Home()
 {
   return (
-  <>
-    <Header />
-    <main className="mainContent">
-      <h1>Hellow World!!!!</h1>
-      <Modal />
-      <h1>Hellow World!!!!</h1>
-      <Modal />
+  <Layout>
+    <main className="mainHome">
+      <Card />
     </main>
-    <Footer />
-  </>
+  </Layout>
   )
 }

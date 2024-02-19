@@ -1,7 +1,6 @@
-.mainContent
+.mainHome
 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
 }
