@@ -1,0 +1,7 @@
+.product-detail
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: var(--main-margin);
+}
