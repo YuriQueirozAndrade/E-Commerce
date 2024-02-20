@@ -105,28 +105,54 @@ namespace Back_End.Data
         .IsRequired();
 
 
-    modelBuilder.Entity<OrderItem>()
+      modelBuilder.Entity<OrderItem>()
         .HasKey(oi => oi.Id);
 
-    modelBuilder.Entity<OrderItem>()
+      modelBuilder.Entity<OrderItem>()
         .Property(oi => oi.Quantity)
         .IsRequired();
 
-    modelBuilder.Entity<OrderItem>()
+      modelBuilder.Entity<OrderItem>()
         .Property(oi => oi.Price)
         .HasColumnType("decimal(18,2)")
         .IsRequired();
 
-    modelBuilder.Entity<OrderItem>()
+      modelBuilder.Entity<OrderItem>()
         .HasOne(oi => oi.Order)
         .WithMany(o => o.OrderItems)
         .HasForeignKey(oi => oi.OrderId)
         .IsRequired();
 
-    modelBuilder.Entity<OrderItem>()
+      modelBuilder.Entity<OrderItem>()
         .HasOne(oi => oi.Product)
         .WithMany()
         .HasForeignKey(oi => oi.ProductId)
+        .IsRequired();
+
+
+      modelBuilder.Entity<Shipping>()
+        .HasKey(s => s.Id);
+
+      modelBuilder.Entity<Shipping>()
+        .Property(s => s.Service)
+        .HasMaxLength(25);
+
+      modelBuilder.Entity<Shipping>()
+        .Property(s => s.Cost)
+        .HasColumnType("decimal(18,2)")
+        .IsRequired();
+
+      modelBuilder.Entity<Shipping>()
+        .Property(s => s.TrackingNumber)
+        .HasMaxLength(50);
+
+      modelBuilder.Entity<Shipping>()
+        .Property(s => s.ShippedDate);
+
+      modelBuilder.Entity<Shipping>()
+        .HasOne(s => s.Order)
+        .WithOne(o => o.Shipping)
+        .HasForeignKey<Shipping>(s => s.OrderId)
         .IsRequired();
     }
   }
