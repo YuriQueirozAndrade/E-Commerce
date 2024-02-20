@@ -9,7 +9,7 @@ namespace Back_End.Models
         public string Status { get; set; }
         public decimal TotalAmount { get; set; }
 
-        public string IdUser { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         public List<OrderItem> OrderItems { get; set; }
