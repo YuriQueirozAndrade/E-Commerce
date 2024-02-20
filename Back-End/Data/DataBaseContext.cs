@@ -39,7 +39,8 @@ namespace Back_End.Data
       modelBuilder.Entity<User>()
         .HasMany(u => u.Orders)
         .WithOne(a => a.User)
-        .HasForeignKey(a => a.UserId)
+        .HasForeignKey(a => a.UserId);
+
 
     modelBuilder.Entity<Address>()
         .HasKey(a => a.Id);
@@ -63,6 +64,7 @@ namespace Back_End.Data
         .Property(u => u.Country)
         .IsRequired()
         .HasMaxLength(50);
+
 
       modelBuilder.Entity<Order>()
         .HasKey(o => o.Id);
@@ -96,6 +98,31 @@ namespace Back_End.Data
       modelBuilder.Entity<Order>()
         .HasMany(o => o.OrderItems)
         .WithOne(i => i.Order)
+        .IsRequired();
+
+
+    modelBuilder.Entity<OrderItem>()
+        .HasKey(oi => oi.Id);
+
+    modelBuilder.Entity<OrderItem>()
+        .Property(oi => oi.Quantity)
+        .IsRequired();
+
+    modelBuilder.Entity<OrderItem>()
+        .Property(oi => oi.Price)
+        .HasColumnType("decimal(18,2)")
+        .IsRequired();
+
+    modelBuilder.Entity<OrderItem>()
+        .HasOne(oi => oi.Order)
+        .WithMany(o => o.OrderItems)
+        .HasForeignKey(oi => oi.OrderId)
+        .IsRequired();
+
+    modelBuilder.Entity<OrderItem>()
+        .HasOne(oi => oi.Product)
+        .WithMany()
+        .HasForeignKey(oi => oi.ProductId)
         .IsRequired();
     }
   }
