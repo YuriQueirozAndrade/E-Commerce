@@ -65,6 +65,10 @@ namespace Back_End.Data
         .IsRequired()
         .HasMaxLength(50);
 
+      modelBuilder.Entity<Address>()
+        .HasOne(a => a.User)
+        .WithMany()
+        .HasForeignKey(a => a.UserId);
 
       modelBuilder.Entity<Order>()
         .HasKey(o => o.Id);
