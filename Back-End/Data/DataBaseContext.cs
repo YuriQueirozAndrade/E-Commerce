@@ -21,6 +21,8 @@ namespace Back_End.Data
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      const string decimalPrice = "decimal(18,2)";
+
       modelBuilder.Entity<User>()
         .Property(u => u.FirstName)
         .IsRequired()
@@ -79,7 +81,7 @@ namespace Back_End.Data
 
       modelBuilder.Entity<Order>()
         .Property(o => o.TotalAmount)
-        .HasColumnType("decimal(18,2)");
+        .HasColumnType(decimalPrice);
 
       modelBuilder.Entity<Order>()
         .HasOne(o => o.User)
@@ -114,7 +116,7 @@ namespace Back_End.Data
 
       modelBuilder.Entity<OrderItem>()
         .Property(oi => oi.Price)
-        .HasColumnType("decimal(18,2)")
+        .HasColumnType(decimalPrice)
         .IsRequired();
 
       modelBuilder.Entity<OrderItem>()
@@ -139,7 +141,7 @@ namespace Back_End.Data
 
       modelBuilder.Entity<Shipping>()
         .Property(s => s.Cost)
-        .HasColumnType("decimal(18,2)")
+        .HasColumnType(decimalPrice)
         .IsRequired();
 
       modelBuilder.Entity<Shipping>()
@@ -154,6 +156,57 @@ namespace Back_End.Data
         .WithOne(o => o.Shipping)
         .HasForeignKey<Shipping>(s => s.OrderId)
         .IsRequired();
+      
+
+      modelBuilder.Entity<Payment>()
+        .HasKey(p => p.Id);
+
+      modelBuilder.Entity<Payment>()
+        .Property(p => p.PaymentMethod)
+        .IsRequired()
+        .HasMaxLength(50);
+
+      modelBuilder.Entity<Payment>()
+        .Property(p => p.TransactionId)
+        .HasMaxLength(100);
+
+      modelBuilder.Entity<Payment>()
+        .Property(p => p.Amount)
+        .HasColumnType(decimalPrice)
+        .IsRequired();
+
+      modelBuilder.Entity<Payment>()
+        .Property(p => p.Status)
+        .IsRequired()
+        .HasMaxLength(50);
+
+      modelBuilder.Entity<Payment>()
+        .HasOne(p => p.Order)
+        .WithOne(o => o.Payment)
+        .HasForeignKey<Payment>(p => p.OrderId)
+        .IsRequired();
+
+      modelBuilder.Entity<Product>()
+        .HasKey(p => p.Id);
+
+      modelBuilder.Entity<Product>()
+        .Property(p => p.Name)
+        .IsRequired()
+        .HasMaxLength(100);
+
+      modelBuilder.Entity<Product>()
+        .Property(p => p.Description)
+        .HasMaxLength(500);
+
+      modelBuilder.Entity<Product>()
+        .Property(p => p.Price)
+        .HasColumnType("decimal(18,2)")
+        .IsRequired();
+
+      modelBuilder.Entity<Product>()
+        .HasMany(p => p.OrderItems)
+        .WithOne(oi => oi.Product)
+        .HasForeignKey(oi => oi.ProductId);
     }
   }
 }
