@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Back_End.Models;
 
 namespace Back_End.Data
@@ -21,6 +22,8 @@ namespace Back_End.Data
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      base.OnModelCreating(modelBuilder);
+
       const string decimalPrice = "decimal(18,2)";
 
       modelBuilder.Entity<User>()
@@ -67,10 +70,6 @@ namespace Back_End.Data
         .IsRequired()
         .HasMaxLength(50);
 
-      modelBuilder.Entity<Address>()
-        .HasOne(a => a.User)
-        .WithMany()
-        .HasForeignKey(a => a.UserId);
 
       modelBuilder.Entity<Order>()
         .HasKey(o => o.Id);
@@ -83,11 +82,6 @@ namespace Back_End.Data
         .Property(o => o.TotalAmount)
         .HasColumnType(decimalPrice);
 
-      modelBuilder.Entity<Order>()
-        .HasOne(o => o.User)
-        .WithMany()
-        .HasForeignKey(o => o.UserId)
-        .IsRequired();
 
       modelBuilder.Entity<Order>()
         .HasOne(o => o.Payment)
