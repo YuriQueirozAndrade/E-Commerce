@@ -1,10 +1,9 @@
-using System;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
 {
-    public class Address
+    public class Address : Base
     {
-        public int Id { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }

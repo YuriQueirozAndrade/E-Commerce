@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
 {
-    public class Product
+    public class Product : Base
     {
         public int Id { get; set; }
         public string Name { get; set; }

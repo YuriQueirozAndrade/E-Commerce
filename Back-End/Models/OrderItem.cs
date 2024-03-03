@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
 {
-    public class OrderItem
+    public class OrderItem : Base
     {
-        public int Id { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
 

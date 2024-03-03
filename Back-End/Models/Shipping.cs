@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
 {
-    public class Shipping
+    public class Shipping : Base
     {
-        public int Id { get; set; }
         public string Service { get; set; }
         public decimal Cost { get; set; }
         public string TrackingNumber { get; set; }

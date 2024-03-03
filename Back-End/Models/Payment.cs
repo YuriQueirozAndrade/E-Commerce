@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
 {
-    public class Payment
+    public class Payment : Base
     {
-        public int Id { get; set; }
         public string PaymentMethod { get; set; }
         public string TransactionId { get; set; }
         public decimal Amount { get; set; }
