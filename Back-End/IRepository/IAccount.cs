@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 namespace Back_End.IRepository
 {
-  public interface IAcount<User> where User : class
+  public interface IAccount<TUser> where TUser : class
   {
-      Task<User> Register(User user,string passwd);
-      Task<User> Login(User user,string passwd,bool persistent, bool lockOnFail);
+      Task<IdentityResult> Register(TUser user,string passwd);
+      Task<SignInResult> Login(string user,string passwd,bool persistent, bool lockOnFail);
       Task Logout();
   }
 }
