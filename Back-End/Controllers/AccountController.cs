@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Back_End.IRepository;
+using Back_End.Interfaces;
 using Back_End.Models;
-using Back_End.Services;
-using Back_End.Models.InputModels;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace Back_End.Controllers;
 
 [ApiController]
@@ -52,7 +50,7 @@ public class AccountController: ControllerBase
             UserName = model.Email,
             Email = model.Email,
         };
-            var result = await _account.Login(model.Email, model.Password, false, false);
+            var result = await _account.Login(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
                 return Ok("Login is Sucess");
@@ -73,4 +71,9 @@ public class AccountController: ControllerBase
         return Ok();
     }
 
+    [HttpGet]
+    public IActionResult ReadUser()
+    {
+        return Ok(User.FindFirstValue(ClaimTypes.NameIdentifier));
+    }
 }
