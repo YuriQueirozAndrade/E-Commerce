@@ -1,3 +1,4 @@
+#nullable enable
 using Back_End.Models.BaseModels;
 
 namespace Back_End.Models
