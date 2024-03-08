@@ -1,8 +1,10 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Back_End.Models;
+using Back_End.Models.BaseModels;
 
 namespace Back_End.Data
 {
@@ -11,6 +13,7 @@ namespace Back_End.Data
     public DataBaseContext(DbContextOptions<DataBaseContext> options)
     : base(options)
     {
+      
     }
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }
@@ -25,6 +28,29 @@ namespace Back_End.Data
       base.OnModelCreating(modelBuilder);
 
       const string decimalPrice = "decimal(18,2)";
+      modelBuilder.Entity<Base>().UseTpcMappingStrategy();
+      modelBuilder.Entity<Address>().ToTable("Addresses");
+      modelBuilder.Entity<Order>().ToTable("Orders");
+      modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
+      modelBuilder.Entity<Shipping>().ToTable("Shippings");
+      modelBuilder.Entity<Payment>().ToTable("Payments");
+      modelBuilder.Entity<Product>().ToTable("Products");
+
+
+      modelBuilder.Entity<Base>()
+        .Property(e => e.Id)
+        .ValueGeneratedOnAdd()
+        .IsRequired();
+
+      modelBuilder.Entity<Base>()
+        .Property(e => e.Deleted)
+        .HasDefaultValue(false)
+        .IsRequired();
+
+      modelBuilder.Entity<Base>()
+        .Property(e => e.DeletedAt)
+        .IsRequired(false);
+
 
       modelBuilder.Entity<User>()
         .Property(u => u.FirstName)
@@ -47,9 +73,6 @@ namespace Back_End.Data
         .HasForeignKey(a => a.UserId);
 
 
-    modelBuilder.Entity<Address>()
-        .HasKey(a => a.Id);
-
       modelBuilder.Entity<Address>()
         .Property(u => u.City )
         .IsRequired()
@@ -70,9 +93,6 @@ namespace Back_End.Data
         .IsRequired()
         .HasMaxLength(50);
 
-
-      modelBuilder.Entity<Order>()
-        .HasKey(o => o.Id);
 
       modelBuilder.Entity<Order>()
         .Property(o => o.Status)
@@ -102,9 +122,6 @@ namespace Back_End.Data
 
 
       modelBuilder.Entity<OrderItem>()
-        .HasKey(oi => oi.Id);
-
-      modelBuilder.Entity<OrderItem>()
         .Property(oi => oi.Quantity)
         .IsRequired();
 
@@ -122,12 +139,8 @@ namespace Back_End.Data
       modelBuilder.Entity<OrderItem>()
         .HasOne(oi => oi.Product)
         .WithMany()
-        .HasForeignKey(oi => oi.ProductId)
-        .IsRequired();
+        .HasForeignKey(oi => oi.ProductId);
 
-
-      modelBuilder.Entity<Shipping>()
-        .HasKey(s => s.Id);
 
       modelBuilder.Entity<Shipping>()
         .Property(s => s.Service)
@@ -151,9 +164,6 @@ namespace Back_End.Data
         .HasForeignKey<Shipping>(s => s.OrderId)
         .IsRequired();
       
-
-      modelBuilder.Entity<Payment>()
-        .HasKey(p => p.Id);
 
       modelBuilder.Entity<Payment>()
         .Property(p => p.PaymentMethod)
@@ -180,8 +190,6 @@ namespace Back_End.Data
         .HasForeignKey<Payment>(p => p.OrderId)
         .IsRequired();
 
-      modelBuilder.Entity<Product>()
-        .HasKey(p => p.Id);
 
       modelBuilder.Entity<Product>()
         .Property(p => p.Name)
