@@ -6,27 +6,30 @@ namespace Back_End.Services
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class 
     {
         private readonly DataBaseContext _dbContext;
-        public Repository (DataBaseContext dbContext)
+        private readonly IResponseDTO<TEntity> _dto;
+        public Repository (DataBaseContext dbContext,IResponseDTO<TEntity> dto)
         {
+            _dto = dto;
             _dbContext = dbContext;
         }
 
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task<TEntity> Create(IDTO<TEntity> entity)
         {
-            await _dbContext.Set<TEntity>().AddAsync(entity);
+            await _dbContext.Set<TEntity>().AddAsync(entity.ToEntity());
             await _dbContext.SaveChangesAsync();
-            return entity;
+            return entity.ToEntity();
         }
-        public async ValueTask<TEntity> GetByID(int Id)
+        public async Task<IDTO<TEntity>> GetByID(int Id)
         {
-            return await _dbContext.Set<TEntity>().FindAsync(Id);
+            return _dto.ToDto(await _dbContext.Set<TEntity>().FindAsync(Id));
         }
-        public virtual async Task<EntityEntry> Update(int ID, TEntity entity)
+        public virtual async Task<EntityEntry> Update(int ID, IDTO<TEntity> entity)
         {
-            await _dbContext.Set<TEntity>().FindAsync(ID);
-            var up = _dbContext.Update<TEntity>(entity);
+            var up = await _dbContext.Set<TEntity>().FindAsync(ID);
+            entity.UpdateEntity(up);
+            var res = _dbContext.Update<TEntity>(up);
             await _dbContext.SaveChangesAsync();
-            return up;
+            return res;
         }
         public async Task<TEntity> Delete(int ID)
         {

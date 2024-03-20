@@ -2,6 +2,7 @@ using Back_End.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Back_End.Models;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using Back_End.Models.DTOs;
 
 namespace Back_End.Services
 {
@@ -15,13 +16,13 @@ namespace Back_End.Services
             _userManager = userService;
         }
 
-        public async Task<IdentityResult> Register(User user,string passwd)
+        public async Task<IdentityResult> Register(RegisterDTO register)
         {
-           return await _userManager.CreateAsync(user,passwd);
+           return await _userManager.CreateAsync(register.ToEntity(),register.Password);
         }
-        public async Task<SignInResult> Login(string user,string passwd,bool persistent = false, bool lockOnFail = false)
+        public async Task<SignInResult> Login(LoginDTO login)
         {
-            return await _signInManager.PasswordSignInAsync(user,passwd,persistent,lockOnFail);
+            return await _signInManager.PasswordSignInAsync(login.Email,login.Password,login.RememberMe,false);
         }
         public async Task Logout()
         {

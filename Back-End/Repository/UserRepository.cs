@@ -1,18 +1,23 @@
+using System.Reflection;
 using Back_End.Data;
 using Back_End.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 namespace Back_End.Services
 {
-    public class UserRepository<TEntity> :Repository<TEntity>, IUser<TEntity> where TEntity : class
+    public class UserRepository<TEntity> :Repository<TEntity>, IUser<TEntity> where TEntity : class, IUserProperties
     {
         private readonly DataBaseContext _dbuser;
-        public UserRepository (DataBaseContext dbuser) : base(dbContext:dbuser)
+        private readonly IResponseDTO<TEntity> _dtouser;
+        public UserRepository (DataBaseContext dbuser, IResponseDTO<TEntity> dtouser) : base(dbContext:dbuser,dto:dtouser)
         {
+            _dtouser = dtouser;
             _dbuser = dbuser;
         }
-        public async Task<IEnumerable<TEntity>> GetAllByUserID(string UserID)
+        public async Task<IEnumerable<IDTO<TEntity>>> GetAllByUserID(string UserID)
         {
-            return await _dbuser.Set<TEntity>().Where(e => e.GetType().GetProperty("UserId").GetValue(e) == UserID).ToListAsync();
+            var ListEntity = await _dbuser.Set<TEntity>().Where(e => e.UserId == UserID).ToListAsync();
+            return _dtouser.ToDtoList(ListEntity);
         }
     }
 }

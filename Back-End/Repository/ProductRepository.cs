@@ -7,8 +7,10 @@ namespace Back_End.Services
     public class ProductRepository :Repository<Product>,IProduct<Product>
     {
         private readonly DataBaseContext _dbContext;
-        public ProductRepository(DataBaseContext dbContext) : base (dbContext:dbContext)
+        private readonly IResponseDTO<Product> _dtoprod;
+        public ProductRepository(DataBaseContext dbContext, IResponseDTO<Product> dtoprod) : base (dbContext:dbContext, dto:dtoprod)
         {
+            _dtoprod = dtoprod;
             _dbContext = dbContext;
         }
         public async Task<List<decimal>> GetByPriceListID(List<int> listID)
