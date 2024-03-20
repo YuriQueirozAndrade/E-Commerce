@@ -8,7 +8,7 @@ using Back_End.Config.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,10 +19,7 @@ builder.Services.AddIdentityCookies();
 
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
-builder.Services.AddAuthorization(options => 
-{
-    options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Administrator"));
-});
+builder.Services.AddAuthorizationBuilder().AddPolicyService();
 
 builder.Services.AddRepositoryDI();
 builder.Services.AddServiceDI();
