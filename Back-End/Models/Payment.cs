@@ -11,7 +11,7 @@ namespace Back_End.Models
         public string Status { get; set; }
 
         public int OrderId { get; set; }
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
 

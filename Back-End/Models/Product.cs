@@ -9,7 +9,7 @@ namespace Back_End.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
 
-        public List<OrderItem>? OrderItems { get; set; }
+        public virtual List<OrderItem>? OrderItems { get; set; }
     }
 }
 

@@ -12,7 +12,7 @@ namespace Back_End.Models
     public bool Deleted { get; set; } = false;
     public DateTime? DeletedAt { get; set; }
 
-    public List<Address> Addresses { get; set; }
-    public List<Order> Orders { get; set; }
+    public virtual List<Address> Addresses { get; set; }
+    public virtual List<Order> Orders { get; set; }
   }
 }
