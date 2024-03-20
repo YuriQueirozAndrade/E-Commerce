@@ -1,12 +1,14 @@
+#nullable enable
 using Back_End.Interfaces;
 namespace Back_End.Models.DTOs
 {
-   public class AddressDTO : IDTO<Address>
+    public class AddressDTO : IDTO<Address>,IResponseDTO<Address>,IUserProperties
    {
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Country { get; set; }
+        public string UserId { get; set; }
 
         public void UpdateEntity(Address address)
         {
@@ -14,6 +16,7 @@ namespace Back_End.Models.DTOs
             address.State = State;
             address.ZipCode = ZipCode;
             address.Country = Country;
+            address.UserId = UserId;
         }
         public Address ToEntity()
         {
@@ -22,8 +25,31 @@ namespace Back_End.Models.DTOs
                City = City,
                State = State,
                ZipCode = ZipCode,
-               Country = Country
+               Country = Country,
+               UserId = UserId
             };
+        }
+        public IDTO<Address> ToDto(Address entity)
+        {
+          return new AddressDTO
+          {
+               City = entity.City,
+               State = entity.State,
+               ZipCode = entity.ZipCode,
+               Country = entity.Country,
+               UserId = entity.UserId
+          };
+        }
+        public List<IDTO<Address>> ToDtoList(List<Address> entities)
+        {
+            List<IDTO<Address>> ad = new List<IDTO<Address>>(entities.Count);
+            for (int i = 0; i < entities.Count; i++)
+            {
+                ad.Add(
+                ToDto(entities[i])
+                );
+            }
+            return ad;
         }
    }
 }

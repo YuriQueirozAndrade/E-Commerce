@@ -1,9 +1,11 @@
 #nullable enable
+using Back_End.Interfaces;
 using System.ComponentModel.DataAnnotations;
-namespace Back_End.Models.InputModels
+using Microsoft.AspNetCore.Mvc;
+namespace Back_End.Models.DTOs
 {
-    public class RegisterInputModel
-    {
+    public class RegisterDTO : IDTO<User>
+   {
         [Required]
         public string UserName { get; set; }
 
@@ -23,6 +25,22 @@ namespace Back_End.Models.InputModels
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
+        public void UpdateEntity(User user)
+        {
+            user.UserName = UserName;
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Email = Email;
+        }
+        public User ToEntity()
+        {
+            return new User
+            {
+                UserName = UserName,
+                FirstName = FirstName,
+                LastName = LastName,
+                Email = Email,
+            };
+        }
+   }
 }
