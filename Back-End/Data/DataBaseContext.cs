@@ -1,8 +1,5 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using Back_End.Models;
 using Back_End.Models.BaseModels;
 
