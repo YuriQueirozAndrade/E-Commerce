@@ -1,8 +1,7 @@
 namespace Back_End.Interfaces
 {
-  public interface IPaymentService<TEntity> where TEntity : class
+  public interface IGetTotalValue
   {
-      TEntity CreatePayment(decimal amount);
       decimal CalculeteAmount(List<decimal> prices, List<int> quantity, decimal shipping);
   }
 }

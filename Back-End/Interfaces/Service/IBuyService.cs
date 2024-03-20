@@ -1,9 +1,10 @@
+using Back_End.Models.DTOs;
+
 namespace Back_End.Interfaces
 {
-  public interface IBuyService<TOrder,TOrderItem>
+  public interface IBuyService<TOrder>
   where TOrder : class
-  where TOrderItem : class
   {
-      Task<TOrder> CreateOrder(List<TOrderItem> entity, string UserID);
+      Task<IDTO<TOrder>> CreateOrder(Cart cart);
   }
 }
