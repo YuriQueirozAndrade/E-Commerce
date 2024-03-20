@@ -1,20 +1,8 @@
-
 using Back_End.Interfaces;
-using Back_End.Models;
 namespace Back_End.Services
 {
-    public class PaymentService :IPaymentService<Payment> 
+    public class GetTotalValue :IGetTotalValue
     {
-        public Payment CreatePayment(decimal amount)
-        { 
-            return new Payment
-            {
-                PaymentMethod = "TestDemoMethod",
-                TransactionId = "TestDemoTransactionId",
-                Amount = amount,
-                Status = "TestDemoStatus"
-            };
-        }
         public decimal CalculeteAmount(List<decimal> prices, List<int> quantity, decimal shipping)
         {
             decimal amount = 0;
