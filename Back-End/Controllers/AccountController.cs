@@ -3,6 +3,7 @@ using Back_End.Interfaces;
 using Back_End.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Back_End.Models.DTOs;
 namespace Back_End.Controllers;
 
 [ApiController]
@@ -18,16 +19,9 @@ public class AccountController: ControllerBase
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> Register(Models.InputModels.RegisterInputModel model)
+    public async Task<IActionResult> Register(RegisterDTO register)
     {
-        var CurrentUser = new User
-        {
-            FirstName = model.FirstName,
-            LastName = model.LastName,
-            UserName = model.Email,
-            Email = model.Email
-        };
-        var result = await _account.Register(CurrentUser, model.Password);
+        var result = await _account.Register(register);
         if (result.Succeeded)
         {
             return Ok("Register Sucess");
@@ -43,21 +37,12 @@ public class AccountController: ControllerBase
     }
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> Login(Models.InputModels.LoginInputModel model)
+    public async Task<IActionResult> Login(LoginDTO login)
     {
-        var CurrentUser = new User
-        {
-            UserName = model.Email,
-            Email = model.Email,
-        };
-            var result = await _account.Login(model.Email, model.Password, model.RememberMe, false);
+            var result = await _account.Login(login);
             if (result.Succeeded)
             {
                 return Ok("Login is Sucess");
-            }
-            else if (result.IsLockedOut)
-            {
-                return BadRequest(new { error = "Account locked out." });
             }
             else
             {
@@ -65,15 +50,16 @@ public class AccountController: ControllerBase
             }
     }
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         await _account.Logout();
         return Ok();
     }
 
-    [HttpGet]
-    public IActionResult ReadUser()
-    {
-        return Ok(User.FindFirstValue(ClaimTypes.NameIdentifier));
-    }
+    // [HttpGet]
+    // public IActionResult ReadUser()
+    // {
+    //     return Ok(User.FindFirstValue(ClaimTypes.NameIdentifier));
+    // }
 }

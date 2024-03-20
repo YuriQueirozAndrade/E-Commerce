@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Back_End.Interfaces;
+using Back_End.Models.DTOs;
 using Back_End.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 using Back_End.Services;
+using Microsoft.AspNetCore.Authorization;
 namespace Back_End.Controllers;
 
-[ApiController]
-[Authorize]
 [Route("[controller]/[action]")]
-public class AddressController: UserRepositoryController<Address>
+[Authorize]
+public class AddressController : UserRepositoryController<Address,AddressDTO>
 {
-    private readonly IUser<Address> _address;
-
-    public AddressController(IUser<Address> address) : base (entity:address)
+    private readonly IUser<Address> _entity;
+    public AddressController(IUser<Address> entity): base(entity:entity)
     {
-        _address = address;
+        _entity = entity;
     }
 }

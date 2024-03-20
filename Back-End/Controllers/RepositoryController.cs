@@ -1,10 +1,12 @@
-
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Back_End.Interfaces;
 namespace Back_End.Controllers;
 
 [Route("[controller]/[action]")]
-public class RepositoryController<TEntity> : ControllerBase where TEntity : class
+public class RepositoryController<TEntity,TDTO> : ControllerBase
+where TEntity : class
+where TDTO : IDTO<TEntity>
 {
     private readonly IRepository<TEntity> _entity;
 
@@ -14,26 +16,35 @@ public class RepositoryController<TEntity> : ControllerBase where TEntity : clas
     }
 
     [HttpPost]
-    public  async Task<IActionResult> Create(TEntity entity)
+    public async Task<IActionResult> Create(TDTO entity)
     {
         await _entity.Create(entity);
-        return Created("{0} is Created", entity);
+        return Created("{0}",entity);
     }
+
     [HttpGet]
-    public  async Task<IActionResult> Read(int Id)
+    public async Task<IActionResult> Read(int id)
     {
-        return Ok(await _entity.GetByID(Id));
+        var entity = await _entity.GetByID(id);
+        if (entity == null)
+        {
+            return NotFound();
+        }
+        return Ok(entity);
     }
+
+
     [HttpPut]
-    public  async Task<IActionResult> Update(int ID, TEntity entity)
+    public async Task<IActionResult> Update(int id, TDTO entity)
     {
-        await _entity.Update(ID, entity);
-        return Created("{0} is Updated", entity);
+        await _entity.Update(id, entity);
+        return NoContent();
     }
+
     [HttpDelete]
-    public  async Task<IActionResult> Delete(int ID, TEntity entity)
+    public async Task<IActionResult> Delete(int id)
     {
-        await _entity.Delete(ID);
-        return Ok($"{entity} Deleted");
+        await _entity.Delete(id);
+        return NoContent();
     }
 }
