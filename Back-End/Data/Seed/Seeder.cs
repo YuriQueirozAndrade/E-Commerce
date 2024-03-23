@@ -7,8 +7,8 @@ namespace Back_End.Data
   {
     public static WebApplication SeederData(this WebApplication app)
     {
-        string AdRoleId = new Guid().ToString();
-        string UserRoleId = new Guid().ToString();
+        string AdRoleId = Guid.NewGuid().ToString();
+        string UserRoleId = Guid.NewGuid().ToString();
         IdentityRole AdminRole = new IdentityRole
         {
             Id = AdRoleId,
