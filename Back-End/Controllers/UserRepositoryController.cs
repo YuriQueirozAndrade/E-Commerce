@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace Back_End.Controllers;
 
 [Route("[controller]/[action]")]
-[Authorize]
 public class UserRepositoryController<TEntity,TDTO> : ControllerBase
 where TEntity : class
 where TDTO : IDTO<TEntity>,IUserProperties

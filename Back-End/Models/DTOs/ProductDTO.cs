@@ -25,17 +25,23 @@ namespace Back_End.Models.DTOs
         }
         public IDTO<Product> ToDto(Product prod)
         {
-            return new ProductDTO{};
-        }
-        public List<IDTO<Product>> ToDtoList(List<Product> products)
-        {
-            List<IDTO<Product>> ProductItemDTOList = new List<IDTO<Product>>(products.Count);
-            for (int i = 0; i < ProductItemDTOList .Count; i++)
+            return new ProductDTO
             {
-                IDTO<Product> newItemDTO = ToDto(products[i]);
-                ProductItemDTOList.Add(newItemDTO);
+                Name = prod.Name,
+                Description = prod.Description,
+                Price = prod.Price,
+            };
+        }
+        public List<IDTO<Product>> ToDtoList(List<Product> entities)
+        {
+            List<IDTO<Product>> ad = new List<IDTO<Product>>(entities.Count);
+            for (int i = 0; i < entities.Count; i++)
+            {
+                ad.Add(
+                ToDto(entities[i])
+                );
             }
-            return ProductItemDTOList;
+            return ad;
         }
    }
 }
