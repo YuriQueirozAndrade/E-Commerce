@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Back_End.Data;
 using Back_End.Models;
-using System.Text.Json.Serialization;
 using Back_End.Config.DependencyInjection;
 using Back_End.Config.Identity;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +17,10 @@ builder.Services.AddIdentity<User, IdentityRole>(options => {options.SignIn.Requ
 builder.Services.AddIdentityOptions();
 builder.Services.AddIdentityCookies();
 
-builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
-
 builder.Services.AddAuthorizationBuilder().AddPolicyService();
+
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);;
+
 
 builder.Services.AddRepositoryDI();
 builder.Services.AddServiceDI();
@@ -35,4 +36,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.SeederData();
 app.Run();
