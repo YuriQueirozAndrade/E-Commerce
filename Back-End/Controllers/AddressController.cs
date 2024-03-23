@@ -11,9 +11,7 @@ namespace Back_End.Controllers;
 [Authorize]
 public class AddressController : UserRepositoryController<Address,AddressDTO>
 {
-    private readonly IUser<Address> _entity;
     public AddressController(IUser<Address> entity): base(entity:entity)
     {
-        _entity = entity;
     }
 }

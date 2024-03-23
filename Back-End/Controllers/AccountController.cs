@@ -56,10 +56,4 @@ public class AccountController: ControllerBase
         await _account.Logout();
         return Ok();
     }
-
-    // [HttpGet]
-    // public IActionResult ReadUser()
-    // {
-    //     return Ok(User.FindFirstValue(ClaimTypes.NameIdentifier));
-    // }
 }
