@@ -12,6 +12,7 @@ namespace Back_End.Models.DTOs
         public bool RememberMe { get; set; }
         public void UpdateEntity(User user)
         {
+            user.Id = new Guid().ToString();
             user.Email = Email;
         }
         public User ToEntity()

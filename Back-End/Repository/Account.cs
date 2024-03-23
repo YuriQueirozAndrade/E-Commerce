@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Back_End.Models;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 using Back_End.Models.DTOs;
+using Microsoft.VisualBasic;
 
 namespace Back_End.Services
 {
@@ -18,7 +19,10 @@ namespace Back_End.Services
 
         public async Task<IdentityResult> Register(RegisterDTO register)
         {
-           return await _userManager.CreateAsync(register.ToEntity(),register.Password);
+            User currentUser = register.ToEntity();
+            var user = await _userManager.CreateAsync(currentUser,register.Password);
+            await _userManager.AddToRoleAsync(currentUser,"USER");
+            return user;
         }
         public async Task<SignInResult> Login(LoginDTO login)
         {
