@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>E_Commerce_API.Core</RootNamespace>
+    <AssemblyName>E_Commerce_API.Core</AssemblyName>
+    <OutputPath>..\bin\</OutputPath>
+    <IntermediateOutputPath>..\obj\\</IntermediateOutputPath>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Folder Include=".\Entities\" />
+    <Folder Include=".\Interfaces\" />
+  </ItemGroup>
+
+
+</Project>
