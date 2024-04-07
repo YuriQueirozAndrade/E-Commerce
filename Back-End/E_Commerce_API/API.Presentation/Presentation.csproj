@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <OutputType>Library</OutputType>
+    <OutputPath>..\bin\</OutputPath>
+    <IntermediateOutputPath>..\obj\</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API.Application\Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".\Controllers\"/>
+  </ItemGroup>
+
+
+</Project>
