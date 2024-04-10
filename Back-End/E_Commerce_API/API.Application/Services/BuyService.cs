@@ -1,12 +1,12 @@
-using E_Commerce_API.Core.Entities;
-using E_Commerce_API.Core.Interfaces;
-using E_Commerce_API.Application.Interfaces.Repository;
-using E_Commerce_API.Application.DTOs;
 using E_Commerce_API.Application.Interfaces;
-using E_Commerce_API.Application.Interfaces.Services;
+using E_Commerce_API.Application.Interfaces.Builder;
 using E_Commerce_API.Application.Interfaces.DTOs;
+using E_Commerce_API.Application.Interfaces.Services;
+using E_Commerce_API.Core.Entities;
+using E_Commerce_API.Application.DTOs;
+using E_Commerce_API.Application.Interfaces.Repository;
 
-namespace E_Commerce_API.Services
+namespace E_Commerce_API.Application.Services
 {
     public class BuyService :IBuyService<Order> 
     {
@@ -36,7 +36,6 @@ namespace E_Commerce_API.Services
                 await _unityOfWork.RollBack();
                 throw;
             }
-
         }
     }
 }

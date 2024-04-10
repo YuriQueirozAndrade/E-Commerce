@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using E_Commerce_API.Infrastructure.Data;
 using E_Commerce_API.Core.Entities;
+using E_Commerce_API.Infrastructure.Data;
 using E_Commerce_API.Config.DependencyInjection;
 using E_Commerce_API.Config.Identity;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

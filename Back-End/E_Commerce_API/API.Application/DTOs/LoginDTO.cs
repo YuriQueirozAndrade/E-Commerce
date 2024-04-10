@@ -1,7 +1,8 @@
 #nullable enable
 using E_Commerce_API.Application.Interfaces.DTOs;
-using System.ComponentModel.DataAnnotations;
 using E_Commerce_API.Core.Entities;
+using System.ComponentModel.DataAnnotations;
+
 namespace E_Commerce_API.Application.DTOs
 {
     public class LoginDTO : IDTO<User>
@@ -15,12 +16,6 @@ namespace E_Commerce_API.Application.DTOs
             user.Id = new Guid().ToString();
             user.Email = Email;
         }
-        public User ToEntity()
-        {
-            return new User
-            {
-                Email = Email,
-            };
-        }
+        public User ToEntity() => new User { Email = Email, };
    }
 }

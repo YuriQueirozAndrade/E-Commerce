@@ -1,7 +1,8 @@
 #nullable enable
+using E_Commerce_API.Core.Interfaces;
 using E_Commerce_API.Application.Interfaces.DTOs;
 using E_Commerce_API.Core.Entities;
-using E_Commerce_API.Core.Interfaces;
+
 namespace E_Commerce_API.Application.DTOs
 {
     public class AddressDTO : IDTO<Address>,IResponseDTO<Address>,IUserProperties

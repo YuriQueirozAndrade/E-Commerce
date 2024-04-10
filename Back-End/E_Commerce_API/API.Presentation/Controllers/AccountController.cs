@@ -1,10 +1,9 @@
+using E_Commerce_API.Application.Interfaces.Repository;
+using E_Commerce_API.Application.DTOs;
+using E_Commerce_API.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using E_Commerce_API.Application.Interfaces.DTOs;
-using E_Commerce_API.Application.DTOs;
-using E_Commerce_API.Application.Interfaces.Repository;
-using E_Commerce_API.Core.Entities;
-using System.Security.Claims;
+
 namespace E_Commerce_API.Presentation.Controllers;
 
 [ApiController]

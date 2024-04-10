@@ -1,7 +1,7 @@
-using E_Commerce_API.Infrastructure.Data;
-using E_Commerce_API.Application.Interfaces.Repository;
 using E_Commerce_API.Application.Interfaces.DTOs;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+using E_Commerce_API.Application.Interfaces.Repository;
+using E_Commerce_API.Infrastructure.Data;
+
 namespace E_Commerce_API.Infrastructure.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class 

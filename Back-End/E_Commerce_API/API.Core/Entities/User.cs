@@ -1,6 +1,7 @@
 #nullable enable
-using Microsoft.AspNetCore.Identity;
 using E_Commerce_API.Core.Interfaces;
+using Microsoft.AspNetCore.Identity;
+
 namespace E_Commerce_API.Core.Entities
 {
   public class User : IdentityUser, IDeletedEntity

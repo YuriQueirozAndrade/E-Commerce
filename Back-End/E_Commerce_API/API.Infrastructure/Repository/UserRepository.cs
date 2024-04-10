@@ -1,8 +1,9 @@
-using E_Commerce_API.Infrastructure.Data;
-using E_Commerce_API.Application.Interfaces.Repository;
-using E_Commerce_API.Application.Interfaces.DTOs;
 using E_Commerce_API.Core.Interfaces;
+using E_Commerce_API.Application.Interfaces.DTOs;
+using E_Commerce_API.Application.Interfaces.Repository;
+using E_Commerce_API.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+
 namespace E_Commerce_API.Infrastructure.Repository
 {
     public class UserRepository<TEntity> :Repository<TEntity>, IUser<TEntity> where TEntity : class, IUserProperties

@@ -2,6 +2,7 @@
 using E_Commerce_API.Application.Interfaces.DTOs;
 using E_Commerce_API.Core.Entities;
 using System.ComponentModel.DataAnnotations;
+
 namespace E_Commerce_API.Application.DTOs
 {
     public class RegisterDTO : IDTO<User>

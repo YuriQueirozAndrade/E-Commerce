@@ -27,9 +27,5 @@
     <ProjectReference Include="..\API.Presentation\Presentation.csproj" />
     <ProjectReference Include="..\API.Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <!-- <Folder Include=".\Config\"/> -->
-    <!-- <Folder Include=".\Properties\"/> -->
-  </ItemGroup>
 
 </Project>

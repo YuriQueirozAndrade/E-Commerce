@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using E_Commerce_API.Core.Entities;
-using E_Commerce_API.Application.Interfaces.DTOs;
 using E_Commerce_API.Application.Interfaces.Repository;
 using E_Commerce_API.Application.DTOs;
-using System.Security.Claims;
+using E_Commerce_API.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 namespace E_Commerce_API.Presentation.Controllers;
 
 [Route("[controller]/[action]")]

@@ -1,5 +1,4 @@
 #nullable enable
-
 namespace E_Commerce_API.Core.Entities
 {
     public class Product : Base

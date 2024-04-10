@@ -1,8 +1,7 @@
-using E_Commerce_API.Application.Interfaces.DTOs;
-using E_Commerce_API.Application.Interfaces;
+using E_Commerce_API.Application.Interfaces.Builder;
 using E_Commerce_API.Core.Entities;
 
-namespace E_Commerce_API.Application.Services
+namespace E_Commerce_API.Application.Builder
 {
     public class OrderBuilder : IOrderBuilder
     {

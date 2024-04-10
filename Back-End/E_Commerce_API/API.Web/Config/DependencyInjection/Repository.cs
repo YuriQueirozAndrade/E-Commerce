@@ -3,6 +3,8 @@ using E_Commerce_API.Application.DTOs;
 using E_Commerce_API.Infrastructure.Repository;
 using E_Commerce_API.Application.Interfaces.DTOs;
 using E_Commerce_API.Application.Interfaces.Repository;
+using E_Commerce_API.Application.Interfaces.Builder;
+using E_Commerce_API.Application.Builder;
 using E_Commerce_API.Infrastructure.UnityOfWork;
 using E_Commerce_API.Application.Interfaces;
 
