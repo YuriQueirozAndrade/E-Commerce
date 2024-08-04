@@ -1,4 +1,3 @@
-#nullable enable
 using E_Commerce_API.Core.Interfaces;
 
 namespace E_Commerce_API.Core.Entities

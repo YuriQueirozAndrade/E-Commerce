@@ -8,8 +8,8 @@ namespace E_Commerce_API.Application.DTOs
     public class LoginDTO : IDTO<User>
    {
         [EmailAddress]
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
         public bool RememberMe { get; set; }
         public void UpdateEntity(User user)
         {

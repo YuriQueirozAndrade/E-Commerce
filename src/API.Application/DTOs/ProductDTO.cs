@@ -6,8 +6,8 @@ namespace E_Commerce_API.Application.DTOs
 {
     public class ProductDTO : IDTO<Product>,IResponseDTO<Product>
    {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
         public decimal Price { get; set; }
 
         public void UpdateEntity(Product product)

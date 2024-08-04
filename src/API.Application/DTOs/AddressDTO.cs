@@ -7,11 +7,11 @@ namespace E_Commerce_API.Application.DTOs
 {
     public class AddressDTO : IDTO<Address>,IResponseDTO<Address>,IUserProperties
    {
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
-        public string Country { get; set; }
-        public string UserId { get; set; }
+        public string City { get; set; } = null!;
+        public string State { get; set; } = null!;
+        public string ZipCode { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string UserId { get; set; } = null!;
 
         public void UpdateEntity(Address address)
         {

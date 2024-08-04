@@ -6,8 +6,8 @@ namespace E_Commerce_API.Application.DTOs
 {
     public class Cart : ICart<OrderItem>
    {
-        public string UserId { get; set; }
-        public List<OrderItemDTO> ListProducts {get; set;}
+        public string UserId { get; set; } = null!;
+        public List<OrderItemDTO> ListProducts {get; set;} = null!;
 
         public List<OrderItem> ToOrderItemList()
         {

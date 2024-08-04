@@ -6,15 +6,15 @@ namespace E_Commerce_API.Application.DTOs
 {
     public class OrderDTO : IDTO<Order>,IResponseDTO<Order>
    {
-        public string OrderStatus { get; set; }
+        public string OrderStatus { get; set; } = null!;
         public decimal TotalAmount { get; set; }
-        public List<IDTO<OrderItem>> OrderItems { get; set; }
-        public string PaymentMethod { get; set; }
-        public string TransactionId { get; set; }
-        public string PaymentStatus { get; set; }
-        public string ShippingService { get; set; }
+        public List<IDTO<OrderItem>> OrderItems { get; set; } = null!;
+        public string PaymentMethod { get; set; } = null!;
+        public string TransactionId { get; set; } = null!;
+        public string PaymentStatus { get; set; } = null!;
+        public string ShippingService { get; set; } = null!;
         public decimal ShippingCost { get; set; }
-        public string TrackingNumber { get; set; }
+        public string TrackingNumber { get; set; } = null!;
         public DateTime? ShippedDate { get; set; }
 
         public void UpdateEntity(Order order)
