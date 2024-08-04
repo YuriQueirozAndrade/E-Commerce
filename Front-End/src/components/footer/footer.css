@@ -1,6 +1,0 @@
-.default-footer
-{
-  width: var(--layout-size-width);
-  height: var(--layout-size-heigth);
-  background-color: var(--main-color);
-}
